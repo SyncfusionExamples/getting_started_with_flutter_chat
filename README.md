@@ -1,2 +1,2 @@
-# -flutter_chat_getting_started
- flutter_chat_getting_started
+# getting_started_with_flutter_chat
+ getting_started_with_flutter_chat
