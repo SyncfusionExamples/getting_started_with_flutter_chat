@@ -97,11 +97,10 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             textStyle: TextStyle(
               fontSize: 14,
-              color: Colors.red,
+              color: Colors.deepPurple,
             ),
           ),
           actionButton: ChatActionButton(
-            backgroundColor: Colors.indigo,
             tooltip: 'Send Button',
             hoverColor: Colors.green,
             onPressed: (String text) {
