@@ -25,7 +25,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<ChatMessage> messageList = [];
+  final List<ChatMessage> _messages = [];
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: SfChat(
-          messages: messageList,
+          messages: _messages,
           outgoingUser: 'Sam',
           incomingBubbleSettings: ChatBubbleSettings(
             contentBackgroundColor: Colors.grey.shade300,
@@ -96,7 +96,8 @@ class _MyHomePageState extends State<MyHomePage> {
               hintText: 'Enter the message...',
             ),
             textStyle: TextStyle(
-              fontSize: 14,
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
               color: Colors.deepPurple,
             ),
           ),
@@ -105,7 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
             hoverColor: Colors.green,
             onPressed: (String text) {
               setState(() {
-                messageList.add(
+                _messages.add(
                   ChatMessage(
                     text: text,
                     time: DateTime.now(),
@@ -119,11 +120,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 );
               });
-      
-              if (text == 'Hi Jack. How are you?') {
+
+              if (text == 'Hi. How are you?') {
                 Future.delayed(const Duration(seconds: 3), () {
                   setState(() {
-                    messageList.add(
+                    _messages.add(
                       ChatMessage(
                         text: 'I am fine. What about you?',
                         time: DateTime.now(),
