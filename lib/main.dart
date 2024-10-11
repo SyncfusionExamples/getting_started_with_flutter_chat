@@ -27,6 +27,70 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final List<ChatMessage> _messages = [];
 
+  Widget _buildPlaceholderBuilder(context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(
+          Icons.question_answer_outlined,
+          color: Theme.of(context).colorScheme.primary,
+          size: 32,
+        ),
+        Text(
+          'No conversation yet.',
+          style: TextStyle(
+            fontSize: 16,
+            color: Theme.of(context).colorScheme.primary,
+          ),
+        ),
+      ],
+    );
+  }
+
+  ChatActionButton _buildChatActionButton() {
+    return ChatActionButton(
+      tooltip: 'Send Button',
+      hoverColor: Colors.green,
+      onPressed: (String text) {
+        setState(() {
+          _messages.add(
+            ChatMessage(
+              text: text,
+              time: DateTime.now(),
+              author: const ChatAuthor(
+                id: 'Sam',
+                name: 'Sam',
+                avatar: AssetImage(
+                  'assets/images/People_Circle14.png',
+                ),
+              ),
+            ),
+          );
+        });
+
+        if (text == 'Hi. How are you?') {
+          Future.delayed(const Duration(seconds: 3), () {
+            setState(() {
+              _messages.add(
+                ChatMessage(
+                  text: 'I am fine. What about you?',
+                  time: DateTime.now(),
+                  author: const ChatAuthor(
+                    id: 'Jack',
+                    name: 'Jack',
+                    avatar: AssetImage(
+                      'assets/images/People_Circle23.png',
+                    ),
+                  ),
+                ),
+              );
+            });
+          });
+        }
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,25 +134,7 @@ class _MyHomePageState extends State<MyHomePage> {
               color: Colors.white,
             ),
           ),
-          placeholderBuilder: (context) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.question_answer_outlined,
-                  color: Theme.of(context).colorScheme.primary,
-                  size: 32,
-                ),
-                Text(
-                  'No conversation yet.',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                ),
-              ],
-            );
-          },
+          placeholderBuilder: _buildPlaceholderBuilder,
           composer: const ChatComposer(
             minLines: 1,
             maxLines: 5,
@@ -101,47 +147,7 @@ class _MyHomePageState extends State<MyHomePage> {
               color: Colors.deepPurple,
             ),
           ),
-          actionButton: ChatActionButton(
-            tooltip: 'Send Button',
-            hoverColor: Colors.green,
-            onPressed: (String text) {
-              setState(() {
-                _messages.add(
-                  ChatMessage(
-                    text: text,
-                    time: DateTime.now(),
-                    author: const ChatAuthor(
-                      id: 'Sam',
-                      name: 'Sam',
-                      avatar: AssetImage(
-                        'assets/images/People_Circle14.png',
-                      ),
-                    ),
-                  ),
-                );
-              });
-
-              if (text == 'Hi. How are you?') {
-                Future.delayed(const Duration(seconds: 3), () {
-                  setState(() {
-                    _messages.add(
-                      ChatMessage(
-                        text: 'I am fine. What about you?',
-                        time: DateTime.now(),
-                        author: const ChatAuthor(
-                          id: 'Jack',
-                          name: 'Jack',
-                          avatar: AssetImage(
-                            'assets/images/People_Circle23.png',
-                          ),
-                        ),
-                      ),
-                    );
-                  });
-                });
-              }
-            },
-          ),
+          actionButton: _buildChatActionButton(),
         ),
       ),
     );
