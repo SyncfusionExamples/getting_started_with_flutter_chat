@@ -1,4 +1,4 @@
-# flutter_chat_firebase
+# How to get started with Flutter Chat widget?
 
 This repository contains a sample that demonstrates the basic features of Flutter Chat widget.
 
