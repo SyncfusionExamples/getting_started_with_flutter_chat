@@ -99,10 +99,10 @@ class _MyHomePageState extends State<MyHomePage> {
         child: SfChat(
           messages: _messages,
           outgoingUser: 'Sam',
-          incomingBubbleSettings: ChatBubbleSettings(
-            contentBackgroundColor: Colors.grey.shade300,
+          incomingMessageSettings: ChatMessageSettings(
+            backgroundColor: Colors.grey.shade300,
             widthFactor: 0.9,
-            contentShape: const RoundedRectangleBorder(
+            shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(5),
                 topRight: Radius.circular(5),
@@ -115,13 +115,13 @@ class _MyHomePageState extends State<MyHomePage> {
               fontSize: 10,
             ),
           ),
-          outgoingBubbleSettings: ChatBubbleSettings(
-            contentBackgroundColor: Theme.of(context).colorScheme.primary,
+          outgoingMessageSettings: ChatMessageSettings(
+            backgroundColor: Theme.of(context).colorScheme.primary,
             widthFactor: 0.85,
             showTimestamp: false,
-            showUserAvatar: false,
-            showUserName: false,
-            contentShape: const RoundedRectangleBorder(
+            showAuthorAvatar: false,
+            showAuthorName: false,
+            shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(5),
                 topRight: Radius.circular(5),
